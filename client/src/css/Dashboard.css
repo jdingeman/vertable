@@ -1,0 +1,6 @@
+.dashboard {
+  background-color: rgb(247, 247, 247);
+  background-image: radial-gradient(circle, #c0c0c0 1px, transparent 1px);
+  background-size: 24px 24px;
+  min-height: 100vh;
+}
