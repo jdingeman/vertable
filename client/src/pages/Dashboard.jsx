@@ -1,7 +1,13 @@
 import "../css/Dashboard.css";
+import Navbar from "../components/Navbar";
 
 function Dashboard() {
-  return <div className="dashboard"></div>;
+  return (
+    <>
+      <Navbar />
+      <div className="dashboard"></div>
+    </>
+  );
 }
 
 export default Dashboard;
