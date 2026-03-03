@@ -39,3 +39,35 @@
   color: white;
   font-weight: 600;
 }
+
+.navbar-hamburger-divider {
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.navbar-hamburger:hover span {
+  background-color: white;
+}
