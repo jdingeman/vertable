@@ -19,6 +19,13 @@ function Navbar() {
         <li>
           <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
+        <li className="navbar-hamburger-divider">
+          <button className="navbar-hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </li>
       </ul>
     </nav>
   );
