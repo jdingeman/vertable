@@ -27,6 +27,7 @@ describe("organizations controller", () => {
       service.getAllOrganizations.mockResolvedValue([mockOrg]);
       const res = makeRes();
       await controller.getAllOrganizations({}, res, vi.fn());
+      expect(service.getAllOrganizations).toHaveBeenCalledWith();
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith([mockOrg]);
     });
@@ -45,6 +46,7 @@ describe("organizations controller", () => {
       service.getOrganizationById.mockResolvedValue(mockOrg);
       const res = makeRes();
       await controller.getOrganizationById({ params: { id: "1" } }, res, vi.fn());
+      expect(service.getOrganizationById).toHaveBeenCalledWith("1");
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith(mockOrg);
     });
@@ -62,7 +64,9 @@ describe("organizations controller", () => {
     it("responds with 201, location header, and organization", async () => {
       service.createOrganization.mockResolvedValue(mockOrg);
       const res = makeRes();
-      await controller.createOrganization({ body: { name: "Acme Corp" } }, res, vi.fn());
+      const body = { name: "Acme Corp" };
+      await controller.createOrganization({ body }, res, vi.fn());
+      expect(service.createOrganization).toHaveBeenCalledWith(body);
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.location).toHaveBeenCalledWith("/organizations/1");
       expect(res.json).toHaveBeenCalledWith(mockOrg);
@@ -87,6 +91,7 @@ describe("organizations controller", () => {
         res,
         vi.fn(),
       );
+      expect(service.updateOrganization).toHaveBeenCalledWith("1", { name: "Updated" });
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith(updated);
     });
@@ -109,6 +114,7 @@ describe("organizations controller", () => {
       service.deleteOrganization.mockResolvedValue();
       const res = makeRes();
       await controller.deleteOrganization({ params: { id: "1" } }, res, vi.fn());
+      expect(service.deleteOrganization).toHaveBeenCalledWith("1");
       expect(res.sendStatus).toHaveBeenCalledWith(204);
     });
 
