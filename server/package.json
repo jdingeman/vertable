@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "nodemon --env-file=.env server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --env-file=.env.test server.js",
+    "test:unit": "vitest run tests/services tests/controllers tests/routes",
+    "test:integration": "vitest run tests/repositories",
+    "seed": "node --env-file=.env db/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,15 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0"
+    "drizzle-orm": "^0.45.1",
+    "express": "^5.1.0",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.3.0",
+    "drizzle-kit": "^0.31.9",
+    "drizzle-seed": "^0.3.1",
+    "supertest": "^7.2.2",
+    "vitest": "^4.0.18"
   }
 }
