@@ -4,12 +4,15 @@ import styles from "./Table.module.css";
 import { useTable } from "./hooks/useTable";
 
 export default function Table() {
-  const { state } = useTable(sampleTable);
-  const table = sampleTable;
-  const activeSheet = table.sheets.find((s) => s.id === table.activeSheetId);
+  const { state, dispatch } = useTable(sampleTable);
+  console.log("editing:", state.editing);
   return (
-    <div className={styles.table}>
-      <Sheet sheet={activeSheet} cells={table.cells} />
-    </div>
+    <Sheet
+      sheet={state.sheets.find((sheet) => sheet.id === state.activeSheetId)}
+      cells={state.cells}
+      selection={state.selection}
+      editing={state.editing}
+      dispatch={dispatch}
+    />
   );
 }

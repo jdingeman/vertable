@@ -12,6 +12,8 @@ function createInitialState(seed) {
     sheets: seed.sheets,
     cells: new Map(seed.cells),
     selection: null,
+    editing: null,
+    editingOriginalValue: null,
     dirty: new Set(),
   };
 }
@@ -26,6 +28,16 @@ function reducer(state, action) {
       return redo(state, action.payload);
     case "SELECT_CELL":
       return cellActions.selectCell(state, action.payload);
+    case "EXTEND_SELECTION":
+      return cellActions.extendSelection(state, action.payload);
+    case "MOVE_SELECTION":
+      return cellActions.moveSelection(state, action.payload);
+    case "START_EDITING":
+      return cellActions.startEditing(state, action.payload);
+    case "STOP_EDITING":
+      return cellActions.stopEditing(state, action.payload);
+    case "CANCEL_EDITING":
+      return cellActions.cancelEditing(state);
     case "EDIT_CELL":
       return cellActions.editCell(state, action.payload);
     case "FORMAT_CELL":
